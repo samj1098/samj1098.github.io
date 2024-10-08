@@ -4,6 +4,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
+    color: #333;
 }
 
 /* Navigation Bar Styles */
@@ -14,6 +15,8 @@ nav {
 
 nav ul {
     list-style-type: none;
+    background-color: #333;
+    text-align: center;
     margin: 0;
     padding: 0;
     text-align: center;
@@ -26,16 +29,72 @@ nav ul li {
 nav ul li a {
     color: white;
     text-decoration: none;
-    padding: 14px 20px;
+    padding: 20px;
     display: inline-block;
 }
 
 nav ul li a:hover {
-    background-color: #ddd;
-    color: black;
+    background-color: #555;
+}
+.about-container {
+    text-align: center;
+    padding: 50px;
+    max-width: 800px;
+    margin: auto;
 }
 
-/* Page Heading */
+.about h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.about-intro {
+    font-size: 1.5rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.about-description {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+/* Profile Picture */
+.profile-pic {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-top: 20px;
+}
+
+/* Social Media Links */
+footer {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.social-links {
+    list-style: none;
+    padding: 0;
+}
+
+.social-links li {
+    display: inline;
+    margin: 0 10px;
+}
+
+.social-links li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.social-links li a:hover {
+    color: #0073e6;
+}
+
 h1 {
     color: #333;
     text-align: center;
