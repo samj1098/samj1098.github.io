@@ -5,9 +5,10 @@ body {
     padding: 0;
     height: 100vh;
     background: linear-gradient(120deg, red, purple, blue);
-    background-size: cover;
+    background-size: 400% 400%;
     color: white;
-    animation: backgroundFade 30s infinite;
+    animation: backgroundShift 30s ease infinite;
+    color: white;
 }
 .about-container, .about h1, .about-description, .about-intro .index html{
     background-color: rgba(255, 255, 255, 0.7); /* Slightly transparent white box */
@@ -114,10 +115,14 @@ p {
     padding: 10px;
 }
 
-@keyframes backgroundFade {
-    0% { background: linear-gradient(120deg, red, purple, blue); }
-    25% { background: linear-gradient(120deg, orange, pink, cyan); }
-    50% { background: linear-gradient(120deg, green, yellow, magenta); }
-    75% { background: linear-gradient(120deg, blue, violet, red); }
-    100% { background: linear-gradient(120deg, red, purple, blue); }
+@keyframes backgroundShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
