@@ -1,0 +1,307 @@
+/* General Styles */
+body, html {
+    font-family: 'Dongle', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    overflow-y: scroll;
+    
+}
+
+:root {
+    --color-bg1: rgb(148, 0, 162);
+    --color-bg2: rgb(0, 17, 82);
+    --color-interactive: rbg(221, 74, 255);
+    --color1: 18, 113, 255;
+    --color2: 221, 74, 255;
+    --color3: 100, 228, 255;
+    --color4: 50, 200, 80;
+    --color5: 180, 180, 50;
+    --color6: 200, 150, 80;
+    --circle-size: 80%;
+    --blending: hard-light;
+}
+
+.gradient-bg {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.g1, .g2, .g3, .g4, .g5 {
+    position: absolute;
+    border-radius: 50%;
+    mix-blend-mode: var(--blending);
+    opacity: 0.8;
+}
+
+.g1 {
+    background: radial-gradient(circle at center, rgba(var(--color1), 0.8) 0%, rgba(var(--color1), 0) 50%);
+    width: var(--circle-size);
+    height: var(--circle-size);
+    top: calc(50% - var(--circle-size) / 2);
+    left: 10%;
+    transform-origin: center;
+    animation: moveVertical 30s ease infinite;
+
+    opacity: 1;
+}
+
+.g2 {
+    background: radial-gradient(circle at center, rgba(var(--color2), 0.8) 0%, rgba(var(--color2), 0) 50%);
+    width: var(--circle-size);
+    height: var(--circle-size);
+    top: 20%;
+    left: 50%;
+    transform-origin: calc(50% - 400px);
+    animation: moveInCircle 20s reverse infinite;
+    opacity: 1;
+}
+
+.g3 {
+    background: radial-gradient(circle at center, rgba(var(--color3), 0.8) 0%, rgba(var(--color3), 0) 50%);
+    width: var(--circle-size);
+    height: var(--circle-size);
+    top: 60%;
+    left: 30%;
+
+    transform-origin: calc(50% + 400px);
+    animation: moveInCircle 40s linear infinite;
+
+    opacity: 1;
+}
+
+.g4 {
+    background: radial-gradient(circle at center, rgba(var(--color4), 0.8) 0%, rgba(var(--color4), 0) 50%);
+    width: var(--circle-size);
+    height: var(--circle-size);
+    top: 50%;
+    left: 10%;
+
+    transform-origin: calc(50% + 400px);
+    animation: moveHorizontal 40s ease infinite;
+}
+
+.g5 {
+    background: radial-gradient(circle at center, rgba(var(--color5), 0.8) 0%, rgba(var(--color5), 0) 50%);
+    width: var(--circle-size);
+    height: var(--circle-size);
+    top: 0%; 
+    left: -30%;
+
+    transform-origin: calc(50% - 800px) calc(50% + 200px);
+    animation: moveInCircle 20s ease infinite;
+
+    opacity: 1;
+}
+
+.g6 {
+    position: absolute;
+    background: radial-gradient(circle at center, rgba(177, 177, 36, 0.8) 0%, rgba(255, 255, 0, 0) 50%); /* Yellow orb */
+    width: var(--circle-size);
+    height: var(--circle-size);
+    top: -50px;
+    right: -350px;
+    opacity: 1;
+    z-index: 10;
+    animation: moveInCircle 20s ease infinite;
+    animation: moveVertical 30s ease infinite;
+}
+
+.interactive {
+    position: absolute;
+    background: radial-gradient(circle at center, rgba(var(--color6), 0.8) 0%, rgba(var(--color6), 0) 50%);
+    mix-blend-mode: var(--blending);
+
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+     
+    opacity: 1;
+    z-index: 1000;
+    pointer-events: none;
+    transform: translate(0, 0);
+
+}
+
+/* Navigation Bar Styles */
+nav {
+    position: relative; /* Set position to relative */
+    z-index: 10; 
+}
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: rgba(172, 159, 159, 0.8);
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 20px 30px;
+    font-size: 1.2rem;
+}
+
+nav ul li a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Text Styling */
+.about-container, .about h1, .about-description, .about-intro {
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block;
+    color: #333; /* Darker text for readability */
+    
+}
+
+.about-container {
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-align: center;
+    padding: 50px;
+    max-width: 800px;
+    margin: auto;
+    color: white;
+    z-index: 10;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+    
+}
+
+.about h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.about-intro {
+    font-size: 1.5rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.about-description {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+/* Profile Picture */
+.profile-pic {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-top: 20px;
+}
+
+/* Social Media Links */
+footer {
+    text-align: center;
+    margin-top: 50px;
+    z-index: 10;
+}
+
+.social-links {
+    list-style: none;
+    padding: 0;
+    z-index: 10;
+}
+
+.social-links li {
+    display: inline;
+    margin: 0 10px;
+    z-index: 10;
+}
+
+.social-links li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.5rem;
+    z-index: 10;
+}
+
+.social-links li a:hover {
+    color: #0073e6;
+    z-index: 10;
+}
+
+/* Header Styling */
+h1 {
+    position: relative;
+    color: #333;
+    text-align: center;
+    padding: 20px 0;
+    z-index: 10;
+}
+
+p {
+    position: relative;
+    text-align: center;
+    padding: 10px;
+}
+
+@keyframes moveInCircle {
+    0% {
+        transform: rotate(360deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(0);
+    }
+}
+
+@keyframes moveVertical {
+    0% {
+        transform: translateY(-50%);
+    }
+    50% {
+        transform: translateY(50%);
+    }
+    100% {
+        transform: translateY(-50%);
+    }
+}
+
+@keyframes moveHorizontal {
+    0% {
+        transform: translateX(-50%) translateY(-10%);
+    }
+    50% {
+        transform: translateX(50%) translateY(10%);
+    }
+    100% {
+        transform: translateX(-50%) translateY(-10%);
+    }
+}
+
+@keyframes moveDiagonal {
+    0% {
+        top: 0;    /* Start at top right */
+        right: 0;
+    }
+    50% {
+        top: 50vh;
+        right: 50vw;
+    }
+    100% {
+        top: 0vh;  /* Move to bottom */
+        right: 0vw; /* Move to left */
+    }
+}

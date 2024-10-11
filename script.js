@@ -1,22 +1,30 @@
-let lastScrollTop = 0;
-const nav = document.querySelector('nav');
+let curX = 0;  // Current X position of the orb
+let curY = 0;  // Current Y position of the orb
+let targetX = 0;  // Target X position (mouse position)
+let targetY = 0;  // Target Y position (mouse position)
 
-window.addEventListener('scroll', function() {
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+document.addEventListener('DOMContentLoaded', () => {
+    const interactiveOrb = document.querySelector('.interactive');
 
-    if (scrollTop > lastScrollTop) {
-        // Scrolling down - hide navbar
-        nav.style.top = '-100px';
-    } else {
-        // Scrolling up - show navbar
-        nav.style.top = '0';
+    function moveOrb() {
+        // Smoothly move the orb by adjusting its current position to move closer to the target
+        curX += (targetX - curX) / 10;  // The larger the divisor, the slower it will follow
+        curY += (targetY - curY) / 10;
+        
+        // Set the new position of the orb
+        interactiveOrb.style.transform = `translate(${curX}px, ${curY}px)`;
+        
+        // Continue the animation
+        requestAnimationFrame(moveOrb);
     }
-    lastScrollTop = scrollTop;
-});
 
-// Show navbar when hovering near the top
-window.addEventListener('mousemove', function(event) {
-    if (event.clientY < 100) { // If the mouse is near the top of the screen
-        nav.style.top = '0';
-    }
+    // Update the target position on mouse move
+    window.addEventListener('mousemove', (event) => {
+        // Subtract half of the orb's size to center it on the mouse
+        targetX = event.clientX - interactiveOrb.offsetWidth / 2;
+        targetY = event.clientY - interactiveOrb.offsetHeight / 2;
+    });
+
+    // Start the animation
+    moveOrb();
 });
