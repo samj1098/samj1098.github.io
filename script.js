@@ -2,14 +2,15 @@ let curX = 0;  // Current X position of the orb
 let curY = 0;  // Current Y position of the orb
 let targetX = 0;  // Target X position (mouse position)
 let targetY = 0;  // Target Y position (mouse position)
+const orbSpeed = 0.05;
 
 document.addEventListener('DOMContentLoaded', () => {
     const interactiveOrb = document.querySelector('.interactive');
 
     function moveOrb() {
         // Smoothly move the orb by adjusting its current position to move closer to the target
-        curX += (targetX - curX) / 10;  // The larger the divisor, the slower it will follow
-        curY += (targetY - curY) / 10;
+        curX += (targetX - curX) / 20;  // The larger the divisor, the slower it will follow
+        curY += (targetY - curY) / 20;
         
         // Set the new position of the orb
         interactiveOrb.style.transform = `translate(${curX}px, ${curY}px)`;
