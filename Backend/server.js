@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+require('dotenv').config(); // Load environment variables
 
 // Import routes
 const authRoutes = require('./routes/auth');
@@ -21,10 +22,8 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
+// Connect to MongoDB using the connection string from .env
 mongoose
-  .connect('mongodb+srv://stjense5:Stj5011!@cluster0.f88dl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected successfully'))
   .catch((err) => console.log('MongoDB connection error:', err));
