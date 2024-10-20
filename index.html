@@ -1,23 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="gradient-bg">
-        <div class="gradients-container">
-            <div class="g1"></div>
-            <div class="g2"></div>
-            <div class="g3"></div>
-            <div class="g4"></div>
-            <div class="g5"></div>
-            <div class="g6"></div>
-            <div class="interactive"></div>
-            
+    <div class="absolute">
+        <div class="absolute inset-0 justify-center">
+            <div class="bg-shape1 bg-teal opacity-50 bg-blur" id="orb1"></div>
+            <div class="bg-shape2 bg-purple opacity-50 bg-blur" id="orb2"></div>
+            <div class="bg-shape3 bg-primary opacity-50 bg-blur" id="orb3"></div>
         </div>
+        <div><h1>Hello World</h1></div>
     </div>
     <nav>
         <ul>
@@ -25,12 +21,9 @@
             <li><a href="portfolio.html">Portfolio</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="education.html">Education</a></li>
+            <li><a href="login.html" id="loginBtn">Login</a></li>
         </ul>
-     </nav>
-     <div class = "about-container">
-    <h1>Welcome to My Portfolio</h1>
-    <p>This is my website where I showcase my projects.</p>
-    </div>
+    </nav>
     <footer>
         <ul class="social-links">
             <li><a href="#">Twitter</a></li>
@@ -40,5 +33,6 @@
     </footer>
 
     <script src="script.js"></script>
-    </body>
+</body>
+
 </html>
