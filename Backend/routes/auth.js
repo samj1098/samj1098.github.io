@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const Visitor = require('../models/visitor');
 
 // Test route to add a user
 router.post('/test-create-user', async (req, res) => {
@@ -46,13 +47,23 @@ router.post('/register', async (req, res) => {
 
     // Save the user to the database
     await newUser.save();
+
+    // Optionally track registration (this could be useful for analytics)
+    const visitorData = new Visitor({
+      ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
+      browser: req.headers['user-agent'],
+      deviceType: req.body.deviceType || 'Unknown', // Optional device type tracking
+      navigationHistory: 'User Registration', // Track the registration path
+      userId: newUser._id, // Link to newly created user
+    });
+    await visitorData.save();
+
     res.status(201).json({ message: 'User registered successfully' });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server error' });
   }
 });
-
 // Login route
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
@@ -75,11 +86,57 @@ router.post('/login', async (req, res) => {
       expiresIn: '1h',
     });
 
+    // Track login event (save in visitor schema)
+    const loginEvent = new Visitor({
+      ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
+      browser: req.headers['user-agent'], // Track browser info from headers
+      navigationHistory: 'User Login', // Track that this event is login
+      userId: user._id, // Link to logged-in user
+    });
+    await loginEvent.save(); // Save the visitor/login data to MongoDB
+
     res.json({ token });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server error' });
   }
 });
+
+// Optional route to track anonymous visitors
+router.post('/track-visitor', async (req, res) => {
+  try {
+    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    const { browser, deviceType, timeSpent, totalClicks, navigationHistory } = req.body;
+
+    // Check if the visitor with this IP already exists
+    let visitor = await Visitor.findOne({ ip: ip });
+
+    if (visitor) {
+      // If visitor exists, update the totalClicks, timeSpent, and other fields
+      visitor.totalClicks += totalClicks;
+      visitor.timeSpent += timeSpent;
+      visitor.navigationHistory = navigationHistory; // You can append or replace this, depending on the requirement
+    } else {
+      // If visitor does not exist, create a new visitor entry
+      visitor = new Visitor({
+        ip: ip,
+        browser: browser,
+        deviceType: deviceType,
+        timeSpent: timeSpent,
+        totalClicks: totalClicks,
+        navigationHistory: navigationHistory,
+      });
+    }
+
+    // Save the visitor data (either updated or new)
+    await visitor.save();
+
+    res.status(200).json({ message: 'Visitor data saved successfully' });
+  } catch (error) {
+    console.error('Error saving visitor data:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 
 module.exports = router;
