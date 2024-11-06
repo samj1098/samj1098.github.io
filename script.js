@@ -40,3 +40,4 @@ document.addEventListener("DOMContentLoaded", function() {
     // Save the startTime when the user first enters the site or navigates between pages
     localStorage.setItem('startTime', startTime);
 });
+
