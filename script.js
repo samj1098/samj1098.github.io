@@ -1,3 +1,30 @@
+const carousel = document.querySelector('.carousel');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+let currentIndex = 0;
+
+function updateCarousel() {
+    const itemWidth = document.querySelector('.carousel-item').offsetWidth;
+    carousel.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+}
+
+nextBtn.addEventListener('click', () => {
+    const totalItems = document.querySelectorAll('.carousel-item').length;
+    if (currentIndex < totalItems - 3) {
+        currentIndex++;
+        updateCarousel();
+    }
+});
+
+prevBtn.addEventListener('click', () => {
+    if (currentIndex > 0) {
+        currentIndex--;
+        updateCarousel();
+    }
+});
+
+
 document.addEventListener("DOMContentLoaded", function() {
     // Retrieve stored values from localStorage or set defaults
     const startTime = localStorage.getItem('startTime') ? parseInt(localStorage.getItem('startTime')) : Date.now();
